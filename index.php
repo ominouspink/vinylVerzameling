@@ -1,4 +1,5 @@
 <?php
+require '../vinylSQL/config.php';
 include 'scripts/script.php';
 ?>
 
@@ -10,6 +11,7 @@ include 'scripts/script.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>vinyl verzameling - Sophia Gorgievski</title>
     <link rel="stylesheet" href="styling/style.css">
+    <script> let inloggen = "<?= $_GET["login"] ?>";</script>
     <script src="scripts/javascript.js" defer></script>
 </head>
 
@@ -62,7 +64,7 @@ include 'scripts/script.php';
             <p>nectar</p>
         </a>
     </div>
-
+    <?php vinylOphalen() ?>
     <div class="inspect">
         <img class="display" id="display" src="media/<?= $vinylInspect ?>.png">
         <div class="infoBox">
@@ -71,6 +73,7 @@ include 'scripts/script.php';
                 info: <?= $artistInfo ?></p>
         </div>
     </div>
+    <?= $_GET["login"] ?>
 
 </body>
 
