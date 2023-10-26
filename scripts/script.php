@@ -1,12 +1,13 @@
 <?php
-$vinyl= $_GET["vinyl"];
-$badIdeas = array("bad ideas", "Tessa Violet", "cute vinyl with songs about love and heartbreak. <br> this artist used to make covers on youtube!");
-$nectar = array("nectar", "Joji", "very nice singer, used to be a youtuber making silly content.");
 
+$vinyl = $_GET["vinyl"];
+// $badIdeas = array("bad ideas", "Tessa Violet", "cute vinyl with songs about love and heartbreak. <br> this artist used to make covers on youtube!");
+// $nectar = array("nectar", "Joji", "very nice singer, used to be a youtuber making silly content.");
 
-$vinylName;
-$artist;
-$artistInfo;
+global $vinylInspect;
+global $vinylName;
+global $artist;
+global $artistInfo;
 
 if($vinyl == NULL){
     $vinylInspect = "sops-vinyl";
@@ -14,18 +15,24 @@ if($vinyl == NULL){
     $artist = "none";
     $artistInfo = "empty :p";
 }
-else if ($vinyl == "badIdeas"){
-    $vinylInspect = "badIdeas";
-    $vinylName= $badIdeas[0] ;
-    $artist = $badIdeas[1];
-    $artistInfo = $badIdeas[2];
-}
-else if ($vinyl == "nectar"){
-    $vinylInspect = "nectar";
-    $vinylName= $nectar[0] ;
-    $artist = $nectar[1];
-    $artistInfo = $nectar[2];
-}
+// else if ($vinyl == "badIdeas"){
+//     $vinylInspect = "badIdeas";
+//     $vinylName= $badIdeas[0] ;
+//     $artist = $badIdeas[1];
+//     $artistInfo = $badIdeas[2];
+// }
+// else if ($vinyl == "nectar"){
+//     $vinylInspect = "nectar";
+//     $vinylName= $nectar[0] ;
+//     $artist = $nectar[1];
+//     $artistInfo = $nectar[2];
+// }
+// else if ($vinyl == "nectar"){
+//     $vinylInspect = "nectar";
+//     $vinylName= $nectar[0] ;
+//     $artist = $nectar[1];
+//     $artistInfo = $nectar[2];
+// }
 
 
 // $vinyl= $_GET["vinyl"];
@@ -54,19 +61,32 @@ else if ($vinyl == "nectar"){
 
 //hieronder een database ophaal connectie
 
-function vinylOphalen(){
-// SQL query voor het ophalen van de data uit mijn vinyl verzameling tabel
-$query = "SELECT * FROM vinylVerzameling";
-global $mysqli;
-//het uitvoeren van die query
-$result = mysqli_query($mysqli, $query);
 
-while ($row = mysqli_fetch_assoc($result)) {
-    // Access individual columns by field name
-    echo "info: " . $row['info'] . "<br>";
-    echo "naam: " . $row['naam'] . "<br>";
-    echo "artiest: " . $row['artiest'] . "<br>";
-    // You can access other columns in a similar way
-    echo "<br>";
-    $row['naam'] = array( $row['naam'], $row['artiest'], $row['info']);
-}}
+function vinylOphalen(){
+    // SQL query voor het ophalen van de data uit mijn vinyl verzameling tabel
+    $query = "SELECT * FROM vinylVerzameling";
+    global $mysqli;
+    global $vinyl;
+    //het uitvoeren van die query
+    $result = mysqli_query($mysqli, $query);
+    
+    while ($row = mysqli_fetch_assoc($result)) {
+        //hieronder verwijderen we de spaties in de naam zodat we de selectie goed kunnen doorverwijzen naar de pagina via ?vinyl=
+        $noSpace = preg_replace('/\s+/', '',$row['naam']);
+        //hieronder plaatsen we de vinyls op de pagina zodat de gebruiker ertussen kan scrollen en selecteren
+        echo '<a href="index.php?vinyl=' . $noSpace . '"><img src="media/' . $row['naam'] . '.png" id="' . $noSpace . '"><p>' . $row['naam'] . '</p></a>';
+       
+      
+    
+    
+        if ($vinyl == $noSpace){
+            global $vinylInspect;
+global $vinylName;
+global $artist;
+global $artistInfo;
+            $vinylInspect = $row['naam'];
+            $vinylName= $row['naam'] ;
+            $artist = $row['artiest'];
+            $artistInfo = $row['info'];
+        }
+    }}

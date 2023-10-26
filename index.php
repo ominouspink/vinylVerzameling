@@ -18,7 +18,7 @@ include 'scripts/script.php';
 <body>
     <center>
         <div class="papaHeader">
-            <div class="headDiv1"> <img class="icon" src="media/sops-vinyl.png"></div>
+            <div class="headDiv1"> <a href=index.php><img class="icon" src="media/sops-vinyl.png"></a></div>
             <div class="headDiv2">
                 <ul class="box">
                     <li class="list"><a class="active" href="index.php?login=login">Login</a></li>
@@ -30,41 +30,9 @@ include 'scripts/script.php';
     </center>
     <hr>
     <div class=vinyls>
-        <a href="index.php?vinyl=nectar"><img src="media/nectar.png" id="nectar">
-            <p>nectar</p>
-        </a>
-        <a href="index.php?vinyl=badIdeas"><img src="media/badIdeas.png">
-            <p>bad ideas</p>
-        </a>
-        <a href="index.php?vinyl=nectar"><img src="media/nectar.png" id="nectar">
-            <p>nectar</p>
-        </a>
-        <a href="index.php?vinyl=badIdeas"><img src="media/badIdeas.png">
-            <p>bad ideas</p>
-        </a>
-        <a href="index.php?vinyl=nectar"><img src="media/nectar.png" id="nectar">
-            <p>nectar</p>
-        </a>
-        <a href="index.php?vinyl=badIdeas"><img src="media/badIdeas.png">
-            <p>bad ideas</p>
-        </a>
-        <a href="index.php?vinyl=nectar"><img src="media/nectar.png" id="nectar">
-            <p>nectar</p>
-        </a>
-        <a href="index.php?vinyl=badIdeas"><img src="media/badIdeas.png">
-            <p>bad ideas</p>
-        </a>
-        <a href="index.php?vinyl=nectar"><img src="media/nectar.png" id="nectar">
-            <p>nectar</p>
-        </a>
-        <a href="index.php?vinyl=badIdeas"><img src="media/badIdeas.png">
-            <p>bad ideas</p>
-        </a>
-        <a href="index.php?vinyl=nectar"><img src="media/nectar.png" id="nectar">
-            <p>nectar</p>
-        </a>
-    </div>
     <?php vinylOphalen() ?>
+    </div>
+ 
     <div class="inspect">
         <img class="display" id="display" src="media/<?= $vinylInspect ?>.png">
         <div class="infoBox">
